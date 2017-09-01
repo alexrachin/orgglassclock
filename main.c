@@ -94,14 +94,13 @@ int i;
 
 void *myThreadFun(void *vargp) {
     sleep(1);
-    printf("Printing GeeksQuiz from Thread \n");
+    printf("Another Thread ---------------------- \n");
     return NULL;
 }
 
 int main() {
     pthread_t tid;
     pthread_create(&tid, NULL, myThreadFun, (void *)i);
-//    pthread_exit(NULL);
     while(TRUE) {
 
         if (timeInterval == 10) {
