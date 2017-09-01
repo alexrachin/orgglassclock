@@ -94,7 +94,7 @@ int i;
 
 void *myThreadFun(void *vargp) {
     sleep(1);
-    printf("Another Thread ---------------------- \n");
+    printf("--------------------Another Thread ---------------------- \n");
     return NULL;
 }
 
