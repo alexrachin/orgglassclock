@@ -20,63 +20,63 @@ struct transition
     transition_callback worker;
 };
 
-void displayMonthsDays() {
+struct Transition displayMonthsDays() {
     printf("xx month - xx days\n");
 }
-void displayHoursMinutes() {
+struct Transition displayHoursMinutes() {
     printf("xx hours - xx minutes\n");
 }
-void displayHoursAdjust() {
+struct Transition displayHoursAdjust() {
     printf("adjust hours\n");
 }
-void displayMinutesAdjust() {
+struct Transition displayMinutesAdjust() {
     printf("adjust minutes\n");
 }
-void displayMonthsAdjust() {
+struct Transition displayMonthsAdjust() {
     printf("adjust months\n");
 }
-void displayDaysAdjust() {
+struct Transition displayDaysAdjust() {
     printf("adjust days\n");
 }
-void incHours() {
+struct Transition incHours() {
     printf("xx + 1 Hours\n");
 }
-void decHours() {
+struct Transition decHours() {
     printf("xx - 1 Hours\n");
 }
-void incMinutes() {
+struct Transition incMinutes() {
     printf("xx + 1 Minutes\n");
 }
-void decMinutes() {
+struct Transition decMinutes() {
     printf("xx - 1 Minutes\n");
 }
-void incMonths() {
+struct Transition incMonths() {
     printf("xx + 1 Months\n");
 }
-void decMonths() {
+struct Transition decMonths() {
     printf("xx - 1 Months\n");
 }
-void incDays() {
+struct Transition incDays() {
     printf("xx + 1 Days\n");
 }
-void decDays() {
+struct Transition decDays() {
     printf("xx - 1 Days\n");
 }
 
-void displayMonthsDays();
-void displayHoursMinutes();
-void displayHoursAdjust();
-void displayMinutesAdjust();
-void displayMonthsAdjust();
-void displayDaysAdjust();
-void incHours();
-void decHours();
-void incMinutes();
-void decMinutes();
-void incMonths();
-void decMonths();
-void incDays();
-void decDays();
+struct Transition displayMonthsDays();
+struct Transition displayHoursMinutes();
+struct Transition displayHoursAdjust();
+struct Transition displayMinutesAdjust();
+struct Transition displayMonthsAdjust();
+struct Transition displayDaysAdjust();
+struct Transition incHours();
+struct Transition decHours();
+struct Transition incMinutes();
+struct Transition decMinutes();
+struct Transition incMonths();
+struct Transition decMonths();
+struct Transition incDays();
+struct Transition decDays();
 
 struct transition FSM_table[6][4] = {
         {{MonthsDays, displayMonthsDays},{MonthsDays, displayMonthsDays},{HoursMinutes, NULL},{HoursMinutes, NULL}},

@@ -3,5 +3,5 @@ project(Testimony)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c)
+set(SOURCE_FILES temp/main.c ButtHandlers.h ButtHandlers.cpp FSMUtils.h FSMUtils.cpp)
 add_executable(Testimony ${SOURCE_FILES})
