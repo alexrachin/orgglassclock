@@ -57,16 +57,13 @@ int timeToChange[] = {CHANGE_MODE_TIME,CHANGE_MODE_TIME,FORSE_CHANGE_MODE_TIME,
                       FORSE_CHANGE_MODE_TIME,FORSE_CHANGE_MODE_TIME,FORSE_CHANGE_MODE_TIME};
 
 void setup() {
-  Serial.begin(9600);
-  Serial.println("Hello  ");
+//  Serial.begin(9600);
+//  Serial.println("Hello  ");
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
   pinMode(MODE_BUTTON, INPUT);
   pinMode(UP_BUTTON, INPUT);
   pinMode(DOWN_BUTTON, INPUT);
 
-  rtc.setTime(20, 12, 0);
-  rtc.setDate(24, 9, 2017);
-  rtc.halt(false);
   rtc.writeProtect(false);
 
   modeHandler.buttonDebounce.enabled = false;
@@ -153,6 +150,23 @@ Handler* getHandler() {
   return ptr;
 }
 
+void setUpTimeSegment() {
+  Time timeNow = rtc.getTime();
+  if(currentState.mode == HoursAdjust) {
+    rtc.setTime(convertToUint8t(num[0], num[1]), timeNow.min, timeNow.sec);
+  } else if (currentState.mode == MinutesAdjust) {
+    rtc.setTime(timeNow.hour, convertToUint8t(num[2], num[3]), timeNow.sec);
+  } else if (currentState.mode == MonthsAdjust) {
+    rtc.setDate(timeNow.date, convertToUint8t(num[0], num[1]), timeNow.year);
+  } else if (currentState.mode == DaysAdjust) {
+    rtc.setDate(convertToUint8t(num[2], num[3]), timeNow.mon, timeNow.year);
+  }
+}
+
+uint8_t convertToUint8t(byte tens, byte ones) {
+  return (tens*10)+ones;
+}
+
 void doHand() {
   
   Handler& h = *(getHandler());
@@ -162,6 +176,7 @@ void doHand() {
     h.lastButtonState = h.currButtonState;
     if (h.lastButtonState == HIGH) {
       if (singleTriggering == false) {
+        if(h.action == ModeButtonSignal) {setUpTimeSegment();}
         currentState = FSM_table[currentState.mode][h.action];
         currentState.onStateAction(&rtc.getTime(), num, numColor);
         redraw();

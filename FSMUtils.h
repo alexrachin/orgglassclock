@@ -8,7 +8,7 @@
 #define hourColor 0xFF0045
 #define minuteColor 0xF000F6
 #define monthColor 0x00F0F6
-#define dayColor 0x00FF45
+#define dayColor 0x00FF75
 #define noneColor 0x0
 
 #define CLOCK_FIRST_HALF 0
